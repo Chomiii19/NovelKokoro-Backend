@@ -1,7 +1,6 @@
 import User from "../models/userModel";
 import AppError from "../utils/appError";
 import catchAsync from "../utils/catchAsync";
-import verifyToken from "../utils/verifyToken";
 
 const protectPage = catchAsync(async (req, res, next) => {
   if (!req.user) return next(new AppError("User not logged in", 403));

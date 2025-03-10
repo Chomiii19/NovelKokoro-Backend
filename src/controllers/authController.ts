@@ -47,7 +47,7 @@ const logout = catchAsync(async (req, res, next) => {
   res.cookie("authToken", "", {
     expires: new Date(Date.now() + 5 * 1000),
     httpOnly: true,
-    secure: process.env.NDDE_ENV === "DEVELOPMENT" ? false : true,
+    secure: true,
     sameSite: "none",
     path: "/",
   });
