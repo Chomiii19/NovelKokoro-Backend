@@ -4,11 +4,9 @@ import catchAsync from "../utils/catchAsync";
 import verifyToken from "../utils/verifyToken";
 
 const protectPage = catchAsync(async (req, res, next) => {
-  const token = req.cookies.token;
-  console.log(token);
-  if (!token) return next(new AppError("No cookie detected", 403));
+  if (!req.user) return next(new AppError("User not logged in", 403));
 
-  const decodedToken = verifyToken(token);
+  const decodedToken = verifyToken(req.user._id);
   const user = await User.findById({ decodedToken });
 
   if (!user)
