@@ -6,8 +6,7 @@ import verifyToken from "../utils/verifyToken";
 const protectPage = catchAsync(async (req, res, next) => {
   if (!req.user) return next(new AppError("User not logged in", 403));
 
-  const decodedToken = verifyToken(req.user._id);
-  const user = await User.findById({ decodedToken });
+  const user = await User.findById(req.user._id);
 
   if (!user)
     return next(
