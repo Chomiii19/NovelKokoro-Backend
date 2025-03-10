@@ -10,6 +10,7 @@ import protect from "./middlewares/protect";
 
 const app = express();
 
+app.set("trust proxy", 1);
 app.use(
   cors({
     origin: ["https://rbac-chomi.vercel.app", "http://localhost:5173"],
