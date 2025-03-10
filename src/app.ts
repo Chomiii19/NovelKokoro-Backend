@@ -21,7 +21,7 @@ app.use(cookieParser());
 
 app.use("/api/v1/users", authRoutes);
 app.use("/api/v1/app", appRoutes);
-app.use("/api/v1/getUser", protect, protectPage);
+app.get("/api/v1/getUser", protect, protectPage);
 app.use("*", (req: Request, res: Response, next: NextFunction) =>
   next(new AppError(`Cannot find ${req.originalUrl} from the server`, 404))
 );
