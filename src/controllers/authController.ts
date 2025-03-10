@@ -45,12 +45,14 @@ const login = catchAsync(async (req, res, next) => {
 
 const logout = catchAsync(async (req, res, next) => {
   res.cookie("authToken", "", {
-    expires: new Date(Date.now() + 5 * 1000),
+    maxAge: 5000,
     httpOnly: true,
     secure: true,
-    sameSite: "none",
+    sameSite: "none" as "none",
     path: "/",
   });
+
+  res.status(200).json({ message: "Logged out successfully" }); // Send response
 });
 
 export { signup, login, logout };
