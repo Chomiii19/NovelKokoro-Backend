@@ -7,6 +7,7 @@ import verifyToken from "../utils/verifyToken";
 const protect = catchAsync(async (req, res, next) => {
   const token = req.cookies.authToken;
 
+  console.log(token);
   if (!token) return next(new AppError("No cookie detected", 403));
   const decodedToken = verifyToken(token);
   const user = await User.findById((decodedToken as JwtPayload).id);
