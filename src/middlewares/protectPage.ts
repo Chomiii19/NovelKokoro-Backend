@@ -8,6 +8,7 @@ const protectPage = catchAsync(async (req, res, next) => {
 
   const user = await User.findById(req.user._id);
 
+  console.log(user);
   if (!user)
     return next(
       new AppError("The user belonging with this token doesn't exist", 404)
