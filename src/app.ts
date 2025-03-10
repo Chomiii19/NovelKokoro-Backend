@@ -1,4 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
+import cors from "cors";
 import globalErrorHandler from "./controllers/globalErrorHandler";
 import AppError from "./utils/appError";
 import authRoutes from "./routes/authRoutes";
@@ -7,6 +8,12 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 
+app.use(
+  cors({
+    origin: "https://rbac-chomi.vercel.app",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
